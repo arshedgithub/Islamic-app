@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hijri/hijri_calendar.dart';
 
-import '../services/location_cache_service.dart';
+import '../../core/services/location_cache_service.dart';
 
 class HomeHijriLocationCard extends StatefulWidget {
   const HomeHijriLocationCard({super.key});

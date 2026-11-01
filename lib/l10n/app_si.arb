@@ -1,0 +1,32 @@
+{
+  "@@locale": "si",
+  "appName": "Zikra",
+  "@appName": { "description": "The application name" },
+
+  "tabHome": "මුල් පිටුව",
+  "@tabHome": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabPrayers": "නමාස් වේලාවන්",
+  "@tabPrayers": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabQuran": "අල් කුර්ආන්",
+  "@tabQuran": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabGuidance": "මඟ පෙන්වීම",
+  "@tabGuidance": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabTools": "මෙවලම්",
+  "@tabTools": { "description": "NEEDS NATIVE REVIEW" },
+
+  "comingSoon": "Coming soon",
+  "@comingSoon": { "description": "NEEDS NATIVE REVIEW — using English as placeholder" },
+
+  "nextPrayer": "ඊළඟ නමාස්",
+  "@nextPrayer": { "description": "NEEDS NATIVE REVIEW" },
+
+  "prayerTimesComingSoon": "නමාස් වේලාවන් ළඟදීම",
+  "@prayerTimesComingSoon": { "description": "NEEDS NATIVE REVIEW" },
+
+  "prayerTimesUnavailableOffline": "Offline වූ විට නමාස් වේලාවන් නොලැබේ",
+  "@prayerTimesUnavailableOffline": { "description": "NEEDS NATIVE REVIEW" }
+}

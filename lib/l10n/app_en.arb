@@ -1,0 +1,32 @@
+{
+  "@@locale": "en",
+  "appName": "Zikra",
+  "@appName": { "description": "The application name" },
+
+  "tabHome": "Home",
+  "@tabHome": { "description": "Bottom navigation: Home tab label" },
+
+  "tabPrayers": "Prayers",
+  "@tabPrayers": { "description": "Bottom navigation: Prayers tab label" },
+
+  "tabQuran": "Quran",
+  "@tabQuran": { "description": "Bottom navigation: Quran tab label" },
+
+  "tabGuidance": "Guidance",
+  "@tabGuidance": { "description": "Bottom navigation: Guidance tab label" },
+
+  "tabTools": "Tools",
+  "@tabTools": { "description": "Bottom navigation: Tools tab label" },
+
+  "comingSoon": "Coming soon",
+  "@comingSoon": { "description": "Placeholder shown when a feature is not yet built" },
+
+  "nextPrayer": "Next prayer",
+  "@nextPrayer": { "description": "Label for the next prayer card" },
+
+  "prayerTimesComingSoon": "Prayer times coming soon",
+  "@prayerTimesComingSoon": { "description": "Honest placeholder while prayer-time calculation is not yet implemented" },
+
+  "prayerTimesUnavailableOffline": "Prayer times unavailable offline",
+  "@prayerTimesUnavailableOffline": { "description": "Shown when device is offline and no cached prayer times exist" }
+}

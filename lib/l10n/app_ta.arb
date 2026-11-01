@@ -1,0 +1,32 @@
+{
+  "@@locale": "ta",
+  "appName": "Zikra",
+  "@appName": { "description": "The application name" },
+
+  "tabHome": "முகப்பு",
+  "@tabHome": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabPrayers": "தொழுகை நேரங்கள்",
+  "@tabPrayers": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabQuran": "அல்-குர்ஆன்",
+  "@tabQuran": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabGuidance": "வழிகாட்டுதல்",
+  "@tabGuidance": { "description": "NEEDS NATIVE REVIEW" },
+
+  "tabTools": "கருவிகள்",
+  "@tabTools": { "description": "NEEDS NATIVE REVIEW" },
+
+  "comingSoon": "Coming soon",
+  "@comingSoon": { "description": "NEEDS NATIVE REVIEW — using English as placeholder" },
+
+  "nextPrayer": "அடுத்த தொழுகை",
+  "@nextPrayer": { "description": "NEEDS NATIVE REVIEW" },
+
+  "prayerTimesComingSoon": "தொழுகை நேரங்கள் விரைவில்",
+  "@prayerTimesComingSoon": { "description": "NEEDS NATIVE REVIEW" },
+
+  "prayerTimesUnavailableOffline": "இணைப்பில்லாமல் தொழுகை நேரங்கள் கிடைக்காது",
+  "@prayerTimesUnavailableOffline": { "description": "NEEDS NATIVE REVIEW" }
+}

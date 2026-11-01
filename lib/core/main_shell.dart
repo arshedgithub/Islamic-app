@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../features/hijri/presentation/hijri_calendar_screen.dart';
-import '../features/mosques/presentation/nearby_mosques_screen.dart';
+import 'package:go_router/go_router.dart';
+import '../app/routes.dart';
 import '../features/quran/presentation/quran_screen.dart';
-import '../features/qibla/presentation/qibla_screen.dart';
-import '../shared/services/location_cache_service.dart';
+import 'services/location_cache_service.dart';
 import '../shared/widgets/zikra_bottom_nav_bar.dart';
 import '../shared/widgets/app_side_menu_drawer.dart';
 import '../shared/widgets/home_hijri_location_card.dart';
@@ -59,15 +58,8 @@ class _MainShellState extends State<MainShell> {
       ),
       _PrayersTabContent(
         topWidget: const HomeHijriLocationCard(),
-        onOpenQibla: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => const QiblaScreen(
-                topWidget: HomeHijriLocationCard(),
-              ),
-            ),
-          );
-        },
+        onOpenQibla: () => context.push(Routes.qibla),
+        onOpenMosques: () => context.push(Routes.nearbyMosques),
       ),
       const QuranScreen(),
       _SectionPage(
@@ -134,16 +126,10 @@ class _MainShellState extends State<MainShell> {
   void _onEntryTap(_EntryData entry) {
     switch (entry.action) {
       case _EntryAction.openHijriCalendar:
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => const HijriCalendarScreen()),
-        );
+        context.push(Routes.hijriCalendar);
         break;
       case _EntryAction.openQibla:
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => const QiblaScreen(topWidget: HomeHijriLocationCard()),
-          ),
-        );
+        context.push(Routes.qibla);
         break;
       case null:
         break;
@@ -197,8 +183,13 @@ class _MainShellState extends State<MainShell> {
 class _PrayersTabContent extends StatelessWidget {
   final Widget? topWidget;
   final VoidCallback onOpenQibla;
+  final VoidCallback onOpenMosques;
 
-  const _PrayersTabContent({this.topWidget, required this.onOpenQibla});
+  const _PrayersTabContent({
+    this.topWidget,
+    required this.onOpenQibla,
+    required this.onOpenMosques,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -247,13 +238,7 @@ class _PrayersTabContent extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (_) => const NearbyMosquesScreen(),
-                    ),
-                  );
-                },
+                onPressed: onOpenMosques,
                 icon: const Icon(Icons.location_city_rounded),
                 label: const Text('Mosques near me'),
               ),
