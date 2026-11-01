@@ -3,9 +3,11 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import '../domain/qibla_math.dart';
 
 class QiblaScreen extends StatefulWidget {
   final bool showScaffold;
@@ -22,8 +24,7 @@ class QiblaScreen extends StatefulWidget {
 }
 
 class _QiblaScreenState extends State<QiblaScreen> {
-  static const double _kaabaLat = 21.4225;
-  static const double _kaabaLng = 39.8262;
+  // Kaaba coordinates come from qibla_math.dart (kKaabaLatitude/kKaabaLongitude).
   static const double _lockDeltaThreshold = 2.5;
   static const int _lockStableSamples = 5;
   static const double _maxGoodCompassAccuracy = 20;
@@ -43,6 +44,9 @@ class _QiblaScreenState extends State<QiblaScreen> {
   bool _compassPausedForUnreliable = false;
   int _unreliableSamples = 0;
   String _status = 'Locating...';
+  // Used to fire haptic exactly once when the lock transitions false → true.
+  bool _prevLocked = false;
+  DateTime _lastHapticAt = DateTime.fromMillisecondsSinceEpoch(0);
   StreamSubscription<CompassEvent>? _compassSubscription;
   StreamSubscription<Position>? _positionSubscription;
   StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
@@ -180,6 +184,17 @@ class _QiblaScreenState extends State<QiblaScreen> {
             nextHeading != null &&
             _stableHeadingSamples >= _lockStableSamples;
 
+        // Fire haptic once when lock transitions false → true, with a 2-second
+        // cooldown so a flickering lock doesn't vibrate repeatedly.
+        if (locked && !_prevLocked) {
+          final now = DateTime.now();
+          if (now.difference(_lastHapticAt).inSeconds >= 2) {
+            HapticFeedback.lightImpact();
+            _lastHapticAt = now;
+          }
+        }
+        _prevLocked = locked;
+
         setState(() {
           _heading = nextHeading;
           _compassAccuracy = accuracy;
@@ -214,11 +229,9 @@ class _QiblaScreenState extends State<QiblaScreen> {
   }
 
   void _updateQiblaBearing(Position position) {
-    final bearing = _calculateBearing(
+    final bearing = qiblaBearing(
       fromLat: position.latitude,
       fromLng: position.longitude,
-      toLat: _kaabaLat,
-      toLng: _kaabaLng,
     );
 
     if (!mounted) return;
@@ -262,28 +275,6 @@ class _QiblaScreenState extends State<QiblaScreen> {
     if (delta > 180) delta = 360 - delta;
     return delta;
   }
-
-  double _calculateBearing({
-    required double fromLat,
-    required double fromLng,
-    required double toLat,
-    required double toLng,
-  }) {
-    final phi1 = _toRad(fromLat);
-    final phi2 = _toRad(toLat);
-    final deltaLambda = _toRad(toLng - fromLng);
-
-    final y = math.sin(deltaLambda);
-    final x =
-        math.cos(phi1) * math.tan(phi2) -
-        math.sin(phi1) * math.cos(deltaLambda);
-    final theta = math.atan2(y, x);
-    final bearing = (_toDeg(theta) + 360) % 360;
-    return bearing;
-  }
-
-  double _toRad(double deg) => deg * math.pi / 180;
-  double _toDeg(double rad) => rad * 180 / math.pi;
 
   @override
   void dispose() {
