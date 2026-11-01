@@ -38,18 +38,13 @@ class _MainShellState extends State<MainShell> {
       _SectionPage(
         entries: const [
           _EntryData(
-            'Next Prayer',
-            'Dhuhr in 01:42',
+            'Prayer times',
+            'Prayer times coming soon',
             Icons.access_time_filled_rounded,
           ),
           _EntryData(
-            'Streak',
-            '7 days consistency',
-            Icons.local_fire_department_rounded,
-          ),
-          _EntryData(
             'Reminders',
-            '2 active reminders',
+            'Coming soon',
             Icons.notifications_active_rounded,
           ),
         ],
@@ -210,15 +205,21 @@ class _PrayersTabContent extends StatelessWidget {
             side: BorderSide(color: colors.outlineVariant),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(14),
-            child: Column(
-              children: const [
-                _PrayerTimeRow(name: 'Fajr', time: '05:01 AM'),
-                _PrayerTimeRow(name: 'Sunrise', time: '06:12 AM'),
-                _PrayerTimeRow(name: 'Dhuhr', time: '12:14 PM'),
-                _PrayerTimeRow(name: 'Asr', time: '03:43 PM'),
-                _PrayerTimeRow(name: 'Maghrib', time: '06:20 PM'),
-                _PrayerTimeRow(name: 'Isha', time: '07:31 PM'),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 24),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.access_time_filled_rounded,
+                  color: colors.onTertiaryContainer,
+                  size: 20,
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  'Prayer times coming soon',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: colors.onTertiaryContainer,
+                  ),
+                ),
               ],
             ),
           ),
@@ -250,40 +251,6 @@ class _PrayersTabContent extends StatelessWidget {
   }
 }
 
-class _PrayerTimeRow extends StatelessWidget {
-  final String name;
-  final String time;
-
-  const _PrayerTimeRow({required this.name, required this.time});
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        children: [
-          Icon(Icons.schedule_rounded, size: 18, color: colors.primary),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              name,
-              style: const TextStyle(fontWeight: FontWeight.w600),
-            ),
-          ),
-          Text(
-            time,
-            style: TextStyle(
-              color: colors.onSurface,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class _SectionPage extends StatelessWidget {
   final List<_EntryData> entries;
