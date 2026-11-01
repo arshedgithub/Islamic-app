@@ -45,14 +45,19 @@ class _NearbyMosquesScreenState extends State<NearbyMosquesScreen> {
       }
 
       final pos = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.medium,
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.medium,
+        ),
       );
 
       final userPoint = LatLng(pos.latitude, pos.longitude);
+      // MosqueRepository caps Overpass queries at 12 km; use that radius here
+      // so the UI always reports the radius that was actually searched (R9 fix).
+      const searchKm = 12.0;
       final nearby = await MosqueRepository.nearby(
         userLat: pos.latitude,
         userLng: pos.longitude,
-        maxKm: 40,
+        maxKm: searchKm,
       );
 
       if (!mounted) return;
@@ -60,8 +65,8 @@ class _NearbyMosquesScreenState extends State<NearbyMosquesScreen> {
         _userPoint = userPoint;
         _nearby = nearby;
         _status = nearby.isEmpty
-            ? 'No mosques found in 40 km from your location'
-            : '${nearby.length} mosques found nearby';
+            ? 'No mosques found within ${searchKm.toInt()} km'
+            : '${nearby.length} mosques found within ${searchKm.toInt()} km';
       });
     } catch (_) {
       if (!mounted) return;
@@ -155,7 +160,7 @@ class _NearbyMosquesScreenState extends State<NearbyMosquesScreen> {
               child: ListView.separated(
                 padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
                 itemCount: _nearby.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 8),
+                separatorBuilder: (_, _) => const SizedBox(height: 8),
                 itemBuilder: (context, index) {
                   final item = _nearby[index];
                   return Card(

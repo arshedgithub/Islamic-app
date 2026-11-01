@@ -238,7 +238,7 @@ class _HijriCalendarTabState extends State<_HijriCalendarTab> {
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                   itemCount: monthNotes.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (_, _) => const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final note = monthNotes[index];
                     final isPast = _dayOnly(
@@ -445,6 +445,8 @@ class _HijriCalendarTabState extends State<_HijriCalendarTab> {
                       child: FilledButton(
                         onPressed: () async {
                           if (!formKey.currentState!.validate()) return;
+                          // Capture navigator before the async gap (R8 fix).
+                          final navigator = Navigator.of(context);
                           final note = HijriNote(
                             id:
                                 existingNote?.id ??
@@ -475,7 +477,7 @@ class _HijriCalendarTabState extends State<_HijriCalendarTab> {
 
                           if (!mounted) return;
                           setState(() => _notes = updatedNotes);
-                          Navigator.of(context).pop();
+                          navigator.pop();
                         },
                         child: Text(isEditing ? 'Update' : 'Save'),
                       ),
@@ -755,7 +757,7 @@ class _HijriConverterTabState extends State<_HijriConverterTab> {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<int>(
-                        value: _hDay,
+                        initialValue: _hDay,
                         decoration: const InputDecoration(labelText: 'Day'),
                         items: List.generate(maxDays, (i) => i + 1)
                             .map(
@@ -775,7 +777,7 @@ class _HijriConverterTabState extends State<_HijriConverterTab> {
                     Expanded(
                       flex: 2,
                       child: DropdownButtonFormField<int>(
-                        value: _hMonth,
+                        initialValue: _hMonth,
                         decoration: const InputDecoration(labelText: 'Month'),
                         items: List.generate(12, (i) => i + 1)
                             .map(
@@ -799,7 +801,7 @@ class _HijriConverterTabState extends State<_HijriConverterTab> {
                 ),
                 const SizedBox(height: 10),
                 DropdownButtonFormField<int>(
-                  value: _hYear,
+                  initialValue: _hYear,
                   decoration: const InputDecoration(labelText: 'Year'),
                   items: List.generate(1500 - 1356 + 1, (i) => 1356 + i)
                       .map(

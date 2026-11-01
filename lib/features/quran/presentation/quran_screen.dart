@@ -372,7 +372,7 @@ class _QuranScreenState extends State<QuranScreen> {
                     : Icons.format_list_numbered_outlined,
                 size: 18,
               ),
-              visualDensity: const VisualDensity(horizontal: -2, vertical: -2),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
             ),
             IconButton(
               tooltip: 'Page by page tilawah',
@@ -383,7 +383,7 @@ class _QuranScreenState extends State<QuranScreen> {
                     : Icons.chrome_reader_mode_outlined,
                 size: 18,
               ),
-              visualDensity: const VisualDensity(horizontal: -2, vertical: -2),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
             ),
             IconButton(
               tooltip: 'Toggle translation for all verses',
@@ -398,7 +398,7 @@ class _QuranScreenState extends State<QuranScreen> {
                     : Icons.translate_outlined,
                 size: 18,
               ),
-              visualDensity: const VisualDensity(horizontal: -2, vertical: -2),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
             ),
             IconButton(
               tooltip: 'Toggle tafsir for all verses',
@@ -413,7 +413,7 @@ class _QuranScreenState extends State<QuranScreen> {
                     : Icons.menu_book_outlined,
                 size: 18,
               ),
-              visualDensity: const VisualDensity(horizontal: -2, vertical: -2),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
             ),
           ],
         ),
