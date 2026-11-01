@@ -6,7 +6,7 @@ import '../features/mosques/presentation/nearby_mosques_screen.dart';
 import '../features/quran/presentation/quran_screen.dart';
 import '../features/qibla/presentation/qibla_screen.dart';
 import '../shared/services/location_cache_service.dart';
-import '../shared/widgets/nafas_bottom_nav_bar.dart';
+import '../shared/widgets/zikra_bottom_nav_bar.dart';
 import '../shared/widgets/app_side_menu_drawer.dart';
 import '../shared/widgets/home_hijri_location_card.dart';
 
@@ -20,12 +20,12 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   int _selectedIndex = 0;
 
-  static const List<NafasNavItem> _tabs = [
-    NafasNavItem(label: 'Home', icon: Icons.home_rounded),
-    NafasNavItem(label: 'Prayers', icon: Icons.mosque_rounded),
-    NafasNavItem(label: 'Quran', icon: Icons.menu_book_rounded),
-    NafasNavItem(label: 'Guidance', icon: Icons.tips_and_updates_rounded),
-    NafasNavItem(label: 'Tools', icon: Icons.widgets_rounded),
+  static const List<ZikraNavItem> _tabs = [
+    ZikraNavItem(label: 'Home', icon: Icons.home_rounded),
+    ZikraNavItem(label: 'Prayers', icon: Icons.mosque_rounded),
+    ZikraNavItem(label: 'Quran', icon: Icons.menu_book_rounded),
+    ZikraNavItem(label: 'Guidance', icon: Icons.tips_and_updates_rounded),
+    ZikraNavItem(label: 'Tools', icon: Icons.widgets_rounded),
   ];
 
   @override
@@ -184,7 +184,7 @@ class _MainShellState extends State<MainShell> {
         ],
       ),
       body: _buildPages()[_selectedIndex],
-      bottomNavigationBar: NafasBottomNavBar(
+      bottomNavigationBar: ZikraBottomNavBar(
         selectedIndex: _selectedIndex,
         items: _tabs,
         onDestinationSelected: (int index) =>

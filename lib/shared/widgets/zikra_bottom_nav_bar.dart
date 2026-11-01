@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class NafasNavItem {
+class ZikraNavItem {
   final String label;
   final IconData icon;
 
-  const NafasNavItem({required this.label, required this.icon});
+  const ZikraNavItem({required this.label, required this.icon});
 }
 
-class NafasBottomNavBar extends StatelessWidget {
+class ZikraBottomNavBar extends StatelessWidget {
   final int selectedIndex;
-  final List<NafasNavItem> items;
+  final List<ZikraNavItem> items;
   final ValueChanged<int> onDestinationSelected;
 
-  const NafasBottomNavBar({
+  const ZikraBottomNavBar({
     super.key,
     required this.selectedIndex,
     required this.items,

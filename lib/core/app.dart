@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'theme.dart';
 import 'main_shell.dart';
 
-class NafasApp extends StatelessWidget {
-  const NafasApp({super.key});
+class ZikraApp extends StatelessWidget {
+  const ZikraApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Nafas',
+      title: 'Zikra',
       theme: AppTheme.lightTheme,
       home: const MainShell(),
     );

@@ -1,4 +1,4 @@
-package com.example.nafas
+package com.zikraapp.zikra
 
 import io.flutter.embedding.android.FlutterActivity
 

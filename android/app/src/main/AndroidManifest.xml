@@ -6,7 +6,7 @@
         android:required="false" />
 
     <application
-        android:label="nafas"
+        android:label="Zikra"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

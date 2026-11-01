@@ -111,7 +111,7 @@ class _NearbyMosquesScreenState extends State<NearbyMosquesScreen> {
                       TileLayer(
                         urlTemplate:
                             'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                        userAgentPackageName: 'com.example.nafas',
+                        userAgentPackageName: 'com.zikraapp.zikra',
                       ),
                       MarkerLayer(
                         markers: [
